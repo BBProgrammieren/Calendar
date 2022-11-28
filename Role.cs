@@ -8,19 +8,23 @@ namespace Calendar
 {
     internal class Role
     {
+
+        static ChooseRoleValidation check = new ChooseRoleValidation();
+        static User user = new User();
+        static string userInfo;
+
         public void StartCalendar()
         {
             ChooseRole();
+            Console.Clear();
+            new ShowCalendar(user.selectedUser);
         }
         public static void ChooseRole()
         {
-            ChooseRoleValidation check = new ChooseRoleValidation();
-            User user = new User();
-
                 Console.WriteLine("Please choose an user! Enter a number between 1 and 3.");
                 Console.WriteLine("User1 --- User2 --- User3");
 
-                var userInfo = Console.ReadLine();
+               userInfo = Console.ReadLine();
 
                 while (check.CheckRole(userInfo) == true)
                 {
@@ -50,8 +54,7 @@ namespace Calendar
                         Console.WriteLine("If you want to continue press Enter.");
                         user.User3();
                         break;
-                }
-            Console.Clear();
+                }      
             GoBack();
         }
 
@@ -62,6 +65,7 @@ namespace Calendar
 
             if (cki.Key == ConsoleKey.Tab)
             {
+                Console.Clear();
                 ChooseRole();
             }
 
