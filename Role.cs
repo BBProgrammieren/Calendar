@@ -17,42 +17,42 @@ namespace Calendar
             ChooseRoleValidation check = new ChooseRoleValidation();
             User user = new User();
 
-            Console.WriteLine("Please choose an user! Enter a number between 1 and 3.");
-            Console.WriteLine("User1 --- User2 --- User3");
+                Console.WriteLine("Please choose an user! Enter a number between 1 and 3.");
+                Console.WriteLine("User1 --- User2 --- User3");
 
-            var userInfo = Console.ReadLine();
+                var userInfo = Console.ReadLine();
 
-            while (check.CheckRole(userInfo) == true)
-            {
-                Console.WriteLine("Please choose a number between 1 and 3!");
-                userInfo = Console.ReadLine();
-            }
+                while (check.CheckRole(userInfo) == true)
+                {
+                    Console.WriteLine("Please choose a number between 1 and 3!");
+                    userInfo = Console.ReadLine();
+                }
 
-            switch(userInfo)
-            {
-                case "1":
-                    Console.WriteLine("You selected User1.");
-                    Console.WriteLine("If you want to choose another user press the ESC button.");
-                    Console.WriteLine("If you want to continue press Enter.");
-                    user.User1();
-                    break;
+                switch (userInfo)
+                {
+                    case "1":
+                        Console.WriteLine("You selected User1.");
+                        Console.WriteLine("If you want to choose another user press the Tab button.");
+                        Console.WriteLine("If you want to continue press Enter.");
+                        user.User1();
+                        break;
 
-                case "2":
-                    Console.WriteLine("You selected User2.");
-                    Console.WriteLine("If you want to choose another user press the ESC button.");
-                    Console.WriteLine("If you want to continue press Enter.");
-                    user.User2();
-                    break;
+                    case "2":
+                        Console.WriteLine("You selected User2.");
+                        Console.WriteLine("If you want to choose another user press the Tab button.");
+                        Console.WriteLine("If you want to continue press Enter.");
+                        user.User2();
+                        break;
 
-                case "3":
-                    Console.WriteLine("You selected User3.");
-                    Console.WriteLine("If you want to choose another user press the ESC button.");
-                    Console.WriteLine("If you want to continue press Enter.");
-                    user.User3();
-                    break;
-            }
-
-            GoBack();           
+                    case "3":
+                        Console.WriteLine("You selected User3.");
+                        Console.WriteLine("If you want to choose another user press the Tab button.");
+                        Console.WriteLine("If you want to continue press Enter.");
+                        user.User3();
+                        break;
+                }
+            Console.Clear();
+            GoBack();
         }
 
         public static void GoBack()
@@ -60,12 +60,11 @@ namespace Calendar
             ConsoleKeyInfo cki;
             cki = Console.ReadKey();
 
-            if (cki.Key == ConsoleKey.Escape)
+            if (cki.Key == ConsoleKey.Tab)
             {
-                Console.Clear();
                 ChooseRole();
             }
-            
+
         }
     }
 }
