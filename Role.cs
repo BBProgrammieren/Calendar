@@ -31,12 +31,16 @@ namespace Calendar
             switch(userInfo)
             {
                 case "1":
-                    Console.WriteLine("You selected User1. If you want to choose another user press the ESC button.");
+                    Console.WriteLine("You selected User1.");
+                    Console.WriteLine("If you want to choose another user press the ESC button.");
+                    Console.WriteLine("If you want to continue press Enter.");
                     user.User1();
                     break;
 
-                case "2": 
-                    Console.WriteLine("You selected User2. If you want to choose another user press the ESC button.");
+                case "2":
+                    Console.WriteLine("You selected User2.");
+                    Console.WriteLine("If you want to choose another user press the ESC button.");
+                    Console.WriteLine("If you want to continue press Enter.");
                     user.User2();
                     break;
 
