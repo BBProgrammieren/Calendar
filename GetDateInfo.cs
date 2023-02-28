@@ -9,15 +9,13 @@ namespace Calendar
     internal class GetDateInfo
     {
         DateTime timeInfo = DateTime.Now;
-        int monthInt;
-        int yearInt;
 
-        public GetDateInfo(int monthNumber, int yearNumber)
-        {
-            monthInt = monthNumber;
-            yearInt = yearNumber;   
-        }
         public GetDateInfo() { }
+        public int CurrentYearNumber()
+        {
+            var year = timeInfo.Year;
+            return year;
+        }
         public int CurrentMonthNumber()
         {
             var month = timeInfo.Month;
@@ -30,10 +28,24 @@ namespace Calendar
             return days;
         }
 
-        public int GetMonthDays()
+        public int GetMonthDays(int month, int year)
         {
+            int monthInt = month;
+            int yearInt = year; 
             var days = DateTime.DaysInMonth(yearInt, monthInt);
             return days;
         }
+
+        public void SetDay()
+        {
+
+        }
+
+        //public int GetDay()
+        //{
+        //    return;
+        //}
+
+
     }
 }

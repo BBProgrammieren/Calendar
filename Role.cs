@@ -8,23 +8,26 @@ namespace Calendar
 {
     internal class Role
     {
-
-        static ChooseRoleValidation check = new ChooseRoleValidation();
-        static User user = new User();
-        static string userInfo;
+        private ChooseRoleValidation check = new ChooseRoleValidation();
+        private string userInfo;
+        private ConsoleKeyInfo read;
 
         public void StartCalendar()
         {
-            ChooseRole();
+            User user = ChooseUser();
             Console.Clear();
-            new ShowCalendar(user.selectedUser);
+            new ShowCalendar(user);
         }
-        public static void ChooseRole()
+        public User ChooseUser()
         {
+            User user = null;
+            while (user == null)
+            {
+                Console.Clear();
                 Console.WriteLine("Please choose an user! Enter a number between 1 and 3.");
                 Console.WriteLine("User1 --- User2 --- User3");
 
-               userInfo = Console.ReadLine();
+                userInfo = Console.ReadLine();
 
                 while (check.CheckRole(userInfo) == true)
                 {
@@ -38,37 +41,52 @@ namespace Calendar
                         Console.WriteLine("You selected User1.");
                         Console.WriteLine("If you want to choose another user press the Tab button.");
                         Console.WriteLine("If you want to continue press Enter.");
-                        user.User1();
-                        break;
+                        read = Console.ReadKey();
+                        if (read.Key == ConsoleKey.Tab)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            user = new User("User1");
+                            break;
+                        }
 
                     case "2":
                         Console.WriteLine("You selected User2.");
                         Console.WriteLine("If you want to choose another user press the Tab button.");
                         Console.WriteLine("If you want to continue press Enter.");
-                        user.User2();
-                        break;
+                        read = Console.ReadKey();
+                        if (read.Key == ConsoleKey.Tab)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            user = new User("User2");
+                            break;
+                        }                   
 
                     case "3":
                         Console.WriteLine("You selected User3.");
                         Console.WriteLine("If you want to choose another user press the Tab button.");
                         Console.WriteLine("If you want to continue press Enter.");
-                        user.User3();
-                        break;
-                }      
-            GoBack();
-        }
-
-        public static void GoBack()
-        {
-            ConsoleKeyInfo cki;
-            cki = Console.ReadKey();
-
-            if (cki.Key == ConsoleKey.Tab)
-            {
-                Console.Clear();
-                ChooseRole();
+                        read = Console.ReadKey();
+                        if (read.Key == ConsoleKey.Tab)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            user = new User("User3");
+                            break;
+                        }
+                }
             }
-
+            return user;
         }
     }
-}
+
+        
+    }
+

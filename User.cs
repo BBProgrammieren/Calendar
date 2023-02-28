@@ -8,27 +8,24 @@ namespace Calendar
 {
     internal class User
     {
-        //public User(userInfo)
-        //{
+        private string name;
+        private Appointments appointments;
 
-        //}
-        public string selectedUser = "";
-        public void User1()
+        public User(string name)
         {
-            selectedUser = "User1";
+            this.name = name;
+            appointments = new Appointments();      
         }
-        public void User2()
-        {
-            selectedUser = "User2";
-        }
-        public void User3()
-        {
-            selectedUser = "User3";
-        }
+      
         //get selected user
-        public string SelectedUser()
+        public string Name()
         {
-            return selectedUser;
+            return name;
+        }
+
+       public Appointments getUserAppointment()
+        {
+            return appointments;
         }
 
         //public void CleanUser()
