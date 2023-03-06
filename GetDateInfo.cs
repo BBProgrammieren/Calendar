@@ -40,12 +40,5 @@ namespace Calendar
         {
 
         }
-
-        //public int GetDay()
-        //{
-        //    return;
-        //}
-
-
     }
 }

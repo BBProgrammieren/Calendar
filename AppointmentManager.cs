@@ -53,6 +53,7 @@ namespace Calendar
             {
                 strAppointment = ap.getString(dateTime);
                 showSecondDialog(strAppointment);
+                readEntry();
             }
         }
         public void setDialog()
@@ -86,8 +87,13 @@ namespace Calendar
         public void readEntry()
         {
             ConsoleKeyInfo cki;
-            strAppointment = Console.ReadLine();
-            showSecondDialog(strAppointment);
+
+            if(strAppointment == null || strAppointment == "")
+            {
+                strAppointment = Console.ReadLine();
+                showSecondDialog(strAppointment);
+            }
+
             cki = Console.ReadKey();
 
             if (cki.Key == ConsoleKey.S)
@@ -142,20 +148,19 @@ namespace Calendar
 
         public void saveAppointment(string str)
         {
-            if(ap.checkNull(dateTime))
+            if (ap.checkNull(dateTime))
             {
                 ap.addAppointment(dateTime, str);
                 Console.Clear();
                 new ShowCalendar(user);
-            }
+        }
             else
             {
-                Console.WriteLine("Already appointment detected for this date!");
-                Console.ReadLine();
-                showSecondDialog(ap.getString(dateTime));
+                Console.Clear();
+                new ShowCalendar(user);
             }
-        
-        }
+
+}
 
         public DateTime IntegerToDateTime(int chosenDay, int month, int year)
         {

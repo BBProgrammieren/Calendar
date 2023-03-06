@@ -85,8 +85,6 @@ namespace Calendar
             }
             return user;
         }
-    }
-
-        
+    }     
     }
 
