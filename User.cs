@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Calendar
 {
+    [Serializable]
     internal class User
     {
-        private string name;
+        [NonSerialized] private string name;
+
         private Appointments appointments;
 
         public User(string name)

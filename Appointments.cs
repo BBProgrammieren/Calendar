@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Calendar
 {
+    [Serializable]
     internal class Appointments
     {
         private Hashtable appointments;
