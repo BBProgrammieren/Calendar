@@ -1,26 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Calendar;
 
-namespace Calendar
+internal class ChooseRoleValidation
 {
-    internal class ChooseRoleValidation
+    public bool CheckRole(string userInfo)
     {
-        public Boolean CheckRole(string userInfo)
-        {
-            var warningInput = false;
+        var warningInput = false;
 
-            if (userInfo == "1" || userInfo == "2" || userInfo == "3")
-            {
-                warningInput = false;
-            }
-            else
-            {
-                warningInput = true;
-            }
-            return warningInput;
-        }
+        if (userInfo == "1" || userInfo == "2" || userInfo == "3")
+            warningInput = false;
+        else
+            warningInput = true;
+        return warningInput;
     }
 }
