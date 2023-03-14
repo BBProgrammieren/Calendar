@@ -5,5 +5,6 @@ internal enum Logger
     Login,
     Check,
     Signin,
-    Start
+    Start,
+    NewUser
 }

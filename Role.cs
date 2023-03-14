@@ -1,4 +1,5 @@
 ﻿using Calendar.enums;
+using System.Collections;
 
 namespace Calendar;
 
@@ -7,10 +8,14 @@ internal class Role
     private ChooseRoleValidation check = new();
     private string userInfo;
     private ConsoleKeyInfo read;
+    private UserManager user = new UserManager();
+    private ArrayList allUsers = new ArrayList();
+    
 
     public void StartCalendar()
     {
-        var user = ChooseUser();
+        this.allUsers = user.getListUser();
+        this.user = ChooseUser();
         Console.Clear();
         new ShowCalendar(user);
     }
@@ -19,27 +24,68 @@ internal class Role
     public UserManager ChooseUser()
     {
         Logger input = Logger.Start;
-        UserManager user = null;
+
+        ConsoleKeyInfo userInput;
         //while (user == null)
         //{
         switch (input)
         {
             case Logger.Start:
-                break;
-        }
+                Console.Clear();
+                Console.WriteLine("Do you have already an existing user?");
+                Console.WriteLine("Y OR N");
+                //Console.WriteLine("User1 --- User2 --- User3");
+              
+                userInput = Console.ReadKey();
 
-        Console.Clear();
-        Console.WriteLine("Do you have already an existing user?");
-        Console.WriteLine("Y OR N");
-        Console.WriteLine("User1 --- User2 --- User3");
+                if (userInput is "y" or "Y")
+                {
+                    goto case Logger.Check;
+                }
 
-        var userInput = Console.ReadLine();
-        if (userInput is "y" or "Y")
-        {
-        }
+                else if (userInput is "n" or "N")
+                {
+                    goto case Logger.NewUser;
+                }
 
-        else if (userInput is "n" or "N")
-        {
+                else
+                {
+                    Console.WriteLine("Please enter Y or N!");
+                    Console.ReadKey();
+                    goto case Logger.Start;
+                }
+            case Logger.Check:
+                if (allUsers.Count == 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("No users detected!");
+                    Console.ReadLine();
+                    goto case Logger.Start; 
+                }
+                else
+                {
+                    goto case Logger.Signin;
+                }
+       
+
+                case Logger.Signin: 
+                return selectUserfromList();
+
+            case Logger.NewUser:
+                var newUserInput = Console.ReadLine();
+                if (check.CheckRole(newUserInput))
+                {
+                    user = new UserManager(newUserInput);
+                    return user;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("User is already existing");
+                    Console.ReadLine();
+                    goto case Logger.Start;
+                }
+           
         }
 
 
@@ -98,6 +144,21 @@ internal class Role
                     break;
                 }
         }
+        return user;
+    }
+
+    public UserManager selectUserfromList()
+    {
+
+        Console.Clear();
+        Console.WriteLine("Please select from the list.");
+
+        for (var i = 1; i <= allUsers.Count; i++)
+        {
+            Console.WriteLine(allUsers[i]);
+        }
+        //alle User anzeigen in Liste und wählen
+        Console.ReadLine();
         return user;
     }
 }
