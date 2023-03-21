@@ -8,19 +8,20 @@ internal class Role
     private ChooseRoleValidation check = new();
     private string userInfo;
     private ConsoleKeyInfo read;
-    private UserManager user = new UserManager();
+    private UserManager userManager;
     private ArrayList allUsers = new ArrayList();
 
-    public Role()
+    public Role(UserManager userManager)
     {
+        this.userManager = userManager;
         StartCalendar();
     }
 
     public void StartCalendar()
     {
-        this.user = ChooseUser();
+        this.userManager = ChooseUser();
         Console.Clear();
-        new ShowCalendar(user);
+        new ShowCalendar(userManager);
     }
 
 
@@ -58,7 +59,7 @@ internal class Role
                     goto case Logger.Start;
                 }
             case Logger.Check:
-                this.allUsers = user.getListUser();
+                this.allUsers = userManager.getListUser();
                 if (allUsers.Count == 0)
                 {
                     Console.Clear();
@@ -81,10 +82,11 @@ internal class Role
                 Console.Clear();
                 Console.WriteLine("Please enter a new user:");
                 newUserInput = Console.ReadLine();
+
                 if (check.CheckRole(newUserInput) && newUserInput != "")
                 {
-                    user = new UserManager(newUserInput);
-                    return user;
+                    userManager.addNewUser(newUserInput);
+                    return userManager;
                 }
                 else
                 {
@@ -166,6 +168,6 @@ internal class Role
         }
         //alle User anzeigen in Liste und wählen
         Console.ReadLine();
-        return user;
+        return userManager;
     }
 }

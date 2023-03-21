@@ -8,15 +8,15 @@ internal class ShowCalendar
     private readonly GetDateInfo dateInfo = new();
     private readonly KeyActions key;
     private int month;
-    private readonly UserManager userInfo;
+    private readonly UserManager userManager;
     private int year;
 
-    public ShowCalendar(UserManager user)
+    public ShowCalendar(UserManager userManager)
     {
         chosenDay = 1;
         month = dateInfo.CurrentMonthNumber();
         year = dateInfo.CurrentYearNumber();
-        userInfo = user;
+        this.userManager = userManager;
         key = new KeyActions(chosenDay, month, year);
         key.setCal(Calendar);
         Calendar(dateInfo.CurrentMonthNumber(), dateInfo.CurrentYearNumber(), chosenDay);
@@ -24,7 +24,7 @@ internal class ShowCalendar
 
     public void ShowCurrentUser()
     {
-        Console.WriteLine(userInfo.Name() + "\n----------------------");
+        Console.WriteLine(userManager.Name() + "\n----------------------");
         //Console.WriteLine("----------------------");
     }
 
@@ -91,11 +91,11 @@ internal class ShowCalendar
         }
         else if (cki.Key == ConsoleKey.Enter)
         {
-            appointment = new AppointmentManager(chosenDay, month, year, userInfo);
+            appointment = new AppointmentManager(chosenDay, month, year, userManager);
         }
         else if (cki.Key == ConsoleKey.Q)
         {
-            role.StartCalendar();
+            Role role = new Role(userManager);
         }
     }
 }

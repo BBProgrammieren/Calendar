@@ -4,6 +4,8 @@ internal class Start
 {
     public static void Main()
     {
-        var role = new Role();
+        UserManager userManager = new UserManager();
+        Role role = new Role(userManager);
+        
     }
 }

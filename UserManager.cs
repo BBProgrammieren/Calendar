@@ -8,15 +8,10 @@ internal class UserManager
     private readonly string name;
     private readonly User user;
 
-    public UserManager(string name)
-    {
-        this.name = name;
- 
-    }
-
     public UserManager()
     {
-
+        this.appointments = new Appointments();
+        this.user = new User();
     }
 
     public string Name()
@@ -24,7 +19,7 @@ internal class UserManager
         return name;
     }
 
-    public void addNewUser()
+    public void addNewUser(string name)
     {
         user.addUser(name, appointments);
     }
