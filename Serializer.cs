@@ -22,6 +22,21 @@ namespace Calendar
             formatter.Serialize(stream, appointments);
             stream.Close();
         }
+        public void userSerializeNow(User user)  
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("MyFile.bin", FileMode.Create, FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, user);
+            stream.Close();
+        }
+
+        public void appointmentSerializeNow(Appointments appointments)  
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("MyFile.bin", FileMode.Create, FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, appointments);
+            stream.Close();
+        }
         public (User, Appointments) DeSerializeNow()
         {
             IFormatter formatter = new BinaryFormatter();
@@ -30,6 +45,26 @@ namespace Calendar
             Appointments appointments = (Appointments)formatter.Deserialize(stream);
             stream.Close();
             return (user, appointments);
+        }
+
+        public User userDeSerializeNow()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("MyFile.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+            User user = (User)formatter.Deserialize(stream);
+            Appointments appointments = (Appointments)formatter.Deserialize(stream);
+            stream.Close();
+            return user;
+        }
+
+        public Appointments appointmentDeSerializeNow() 
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("MyFile.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+            User user = (User)formatter.Deserialize(stream);
+            Appointments appointments = (Appointments)formatter.Deserialize(stream);
+            stream.Close();
+            return appointments;    
         }
     }
 }

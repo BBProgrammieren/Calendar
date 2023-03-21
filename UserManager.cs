@@ -4,14 +4,16 @@ namespace Calendar;
 
 internal class UserManager
 {
-    private readonly Appointments appointments;
-    private readonly string name;
-    private readonly User user;
+    private Appointments appointments;
+    private string name;
+    private User user;
+    private Serializer serializer;
 
     public UserManager()
     {
+        this.serializer = new Serializer();
         this.appointments = new Appointments();
-        this.user = new User();
+        this.user = serializer.userDeSerializeNow();
     }
 
     public string Name()
@@ -22,6 +24,13 @@ internal class UserManager
     public void addNewUser(string name)
     {
         user.addUser(name, appointments);
+        serializer.SerializeNow(user, appointments);
+    }
+
+    public void deleteUser(string name) 
+    {
+        user.deleteUser(name);
+        serializer.SerializeNow(user, appointments);
     }
 
     public bool getUserInfo()
