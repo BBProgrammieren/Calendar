@@ -6,12 +6,12 @@ internal class UserManager
 {
     private readonly Appointments appointments;
     private readonly string name;
-    private readonly User user = new User();
+    private readonly User user;
 
     public UserManager(string name)
     {
         this.name = name;
-        appointments = new Appointments();
+ 
     }
 
     public UserManager()

@@ -95,7 +95,6 @@ internal class ShowCalendar
         }
         else if (cki.Key == ConsoleKey.Q)
         {
-            var role = new Role();
             role.StartCalendar();
         }
     }

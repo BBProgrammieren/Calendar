@@ -10,11 +10,14 @@ internal class Role
     private ConsoleKeyInfo read;
     private UserManager user = new UserManager();
     private ArrayList allUsers = new ArrayList();
-    
+
+    public Role()
+    {
+        StartCalendar();
+    }
 
     public void StartCalendar()
     {
-        this.allUsers = user.getListUser();
         this.user = ChooseUser();
         Console.Clear();
         new ShowCalendar(user);
@@ -35,15 +38,15 @@ internal class Role
                 Console.WriteLine("Do you have already an existing user?");
                 Console.WriteLine("Y OR N");
                 //Console.WriteLine("User1 --- User2 --- User3");
-              
+
                 userInput = Console.ReadKey();
 
-                if (userInput is "y" or "Y")
+                if (userInput.Key is ConsoleKey.Y)
                 {
                     goto case Logger.Check;
                 }
 
-                else if (userInput is "n" or "N")
+                else if (userInput.Key is ConsoleKey.N)
                 {
                     goto case Logger.NewUser;
                 }
@@ -55,25 +58,30 @@ internal class Role
                     goto case Logger.Start;
                 }
             case Logger.Check:
+                this.allUsers = user.getListUser();
                 if (allUsers.Count == 0)
                 {
                     Console.Clear();
                     Console.WriteLine("No users detected!");
                     Console.ReadLine();
-                    goto case Logger.Start; 
+                    goto case Logger.Start;
                 }
                 else
                 {
                     goto case Logger.Signin;
                 }
-       
 
-                case Logger.Signin: 
+
+            case Logger.Signin:
                 return selectUserfromList();
 
             case Logger.NewUser:
-                var newUserInput = Console.ReadLine();
-                if (check.CheckRole(newUserInput))
+
+                string newUserInput;
+                Console.Clear();
+                Console.WriteLine("Please enter a new user:");
+                newUserInput = Console.ReadLine();
+                if (check.CheckRole(newUserInput) && newUserInput != "")
                 {
                     user = new UserManager(newUserInput);
                     return user;
@@ -81,71 +89,70 @@ internal class Role
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine("User is already existing");
+                    Console.WriteLine("Enter a valid user");
                     Console.ReadLine();
                     goto case Logger.Start;
                 }
-           
         }
-
-
-        userInfo = Console.ReadLine();
-
-        while (check.CheckRole(userInfo) == true)
-        {
-            Console.WriteLine("Please choose a number between 1 and 3!");
-            userInfo = Console.ReadLine();
-        }
-
-        switch (userInfo)
-        {
-            case "1":
-                Console.WriteLine("You selected User1.");
-                Console.WriteLine("If you want to choose another user press the Tab button.");
-                Console.WriteLine("If you want to continue press Enter.");
-                read = Console.ReadKey();
-                if (read.Key == ConsoleKey.Tab)
-                {
-                    break;
-                }
-                else
-                {
-                    user = new UserManager("User1");
-                    break;
-                }
-
-            case "2":
-                Console.WriteLine("You selected User2.");
-                Console.WriteLine("If you want to choose another user press the Tab button.");
-                Console.WriteLine("If you want to continue press Enter.");
-                read = Console.ReadKey();
-                if (read.Key == ConsoleKey.Tab)
-                {
-                    break;
-                }
-                else
-                {
-                    user = new UserManager("User2");
-                    break;
-                }
-
-            case "3":
-                Console.WriteLine("You selected User3.");
-                Console.WriteLine("If you want to choose another user press the Tab button.");
-                Console.WriteLine("If you want to continue press Enter.");
-                read = Console.ReadKey();
-                if (read.Key == ConsoleKey.Tab)
-                {
-                    break;
-                }
-                else
-                {
-                    user = new UserManager("User3");
-                    break;
-                }
-        }
-        return user;
+        return null;
     }
+    //    userInfo = Console.ReadLine();
+
+    //    while (check.CheckRole(userInfo) == true)
+    //    {
+    //        Console.WriteLine("Please choose a number between 1 and 3!");
+    //        userInfo = Console.ReadLine();
+    //    }
+
+    //    switch (userInfo)
+    //    {
+    //        case "1":
+    //            Console.WriteLine("You selected User1.");
+    //            Console.WriteLine("If you want to choose another user press the Tab button.");
+    //            Console.WriteLine("If you want to continue press Enter.");
+    //            read = Console.ReadKey();
+    //            if (read.Key == ConsoleKey.Tab)
+    //            {
+    //                break;
+    //            }
+    //            else
+    //            {
+    //                user = new UserManager("User1");
+    //                break;
+    //            }
+
+    //        case "2":
+    //            Console.WriteLine("You selected User2.");
+    //            Console.WriteLine("If you want to choose another user press the Tab button.");
+    //            Console.WriteLine("If you want to continue press Enter.");
+    //            read = Console.ReadKey();
+    //            if (read.Key == ConsoleKey.Tab)
+    //            {
+    //                break;
+    //            }
+    //            else
+    //            {
+    //                user = new UserManager("User2");
+    //                break;
+    //            }
+
+    //        case "3":
+    //            Console.WriteLine("You selected User3.");
+    //            Console.WriteLine("If you want to choose another user press the Tab button.");
+    //            Console.WriteLine("If you want to continue press Enter.");
+    //            read = Console.ReadKey();
+    //            if (read.Key == ConsoleKey.Tab)
+    //            {
+    //                break;
+    //            }
+    //            else
+    //            {
+    //                user = new UserManager("User3");
+    //                break;
+    //            }
+    //    }
+    //    return user;
+    //}
 
     public UserManager selectUserfromList()
     {

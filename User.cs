@@ -9,6 +9,10 @@ internal class User
     private string strUser;
     private readonly Hashtable user = new();
 
+    public User()
+    {
+
+    }
     public Hashtable getHashtable()
     {
         return user;
