@@ -10,9 +10,11 @@ internal class ShowCalendar
     private int month;
     private readonly UserManager userManager;
     private int year;
+    private bool saved;
 
     public ShowCalendar(UserManager userManager)
     {
+        this.saved = false;
         chosenDay = 1;
         month = dateInfo.CurrentMonthNumber();
         year = dateInfo.CurrentYearNumber();
@@ -64,6 +66,7 @@ internal class ShowCalendar
         Console.WriteLine("Infos:");
         Console.WriteLine("Arrow left: previous month | Arrow right: next month");
         Console.WriteLine("Press A: Show all meetings");
+        Console.WriteLine("Press S: Save all");
         Console.WriteLine("Press Q: Quit and go Start");
 
         Reader();
@@ -96,6 +99,10 @@ internal class ShowCalendar
         else if (cki.Key == ConsoleKey.Q)
         {
             Role role = new Role(userManager);
+        }
+        else if (cki.Key == ConsoleKey.S)
+        {
+            this.saved = true;
         }
     }
 }

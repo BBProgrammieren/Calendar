@@ -11,9 +11,11 @@ internal class UserManager
 
     public UserManager()
     {
-        this.serializer = new Serializer();
         this.appointments = new Appointments();
+        this.user = new User();
+        this.serializer = new Serializer();
         this.user = serializer.userDeSerializeNow();
+        this.appointments = serializer.appointmentDeSerializeNow();
     }
 
     public string Name()

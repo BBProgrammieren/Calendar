@@ -41,9 +41,20 @@ namespace Calendar
         {
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream("MyFile.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
-            User user = (User)formatter.Deserialize(stream);
-            Appointments appointments = (Appointments)formatter.Deserialize(stream);
-            stream.Close();
+            try
+            {
+                appointments = (Appointments)formatter.Deserialize(stream);
+                user = (User)formatter.Deserialize(stream);
+            }
+            catch (Exception ex)
+            {
+                user = new User();
+                appointments = new Appointments();
+            }
+            finally
+            {
+                stream.Close();
+            }
             return (user, appointments);
         }
 
@@ -51,9 +62,18 @@ namespace Calendar
         {
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream("MyFile.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
-            User user = (User)formatter.Deserialize(stream);
-            Appointments appointments = (Appointments)formatter.Deserialize(stream);
-            stream.Close();
+            try
+            {
+                 user = (User)formatter.Deserialize(stream);
+            }
+            catch (Exception ex)
+            {
+                 user = new User();
+            }
+            finally
+            {
+                stream.Close();            
+            }
             return user;
         }
 
@@ -61,10 +81,19 @@ namespace Calendar
         {
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream("MyFile.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
-            User user = (User)formatter.Deserialize(stream);
-            Appointments appointments = (Appointments)formatter.Deserialize(stream);
-            stream.Close();
-            return appointments;    
+            try
+            {
+                appointments = (Appointments)formatter.Deserialize(stream);
+            }
+            catch (Exception ex)
+            {
+                appointments = new Appointments();
+            }
+            finally
+            {
+                stream.Close();
+            }
+            return appointments;
         }
     }
 }
