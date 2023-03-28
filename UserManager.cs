@@ -5,39 +5,45 @@ namespace Calendar;
 internal class UserManager
 {
     private Appointments appointments;
-    private string name;
+    private string strUser; 
     private User user;
     private Serializer serializer;
 
     public UserManager()
     {
         this.appointments = new Appointments();
-        this.user = new User();
+        this.serializer = new Serializer();
+        this.user = serializer.userDeSerializeNow();       
+    }
+
+    public UserManager(string strUser)
+    {
         this.serializer = new Serializer();
         this.user = serializer.userDeSerializeNow();
-        this.appointments = serializer.appointmentDeSerializeNow();
+        this.strUser = strUser; 
+        this.appointments = user.getAppointment(strUser);        
     }
 
     public string Name()
     {
-        return name;
+        return strUser;
     }
 
     public void addNewUser(string name)
     {
         user.addUser(name, appointments);
-        serializer.SerializeNow(user, appointments);
+        serializer.userSerializeNow(user);
     }
 
-    public void deleteUser(string name) 
+    public void deleteUser(string strUser) 
     {
-        user.deleteUser(name);
+        user.deleteUser(strUser);
         serializer.SerializeNow(user, appointments);
     }
 
     public bool getUserInfo()
     {
-        if (user.getHashtable().ContainsKey(name))
+        if (user.getHashtable().ContainsKey(strUser))
         {
             return true;
         }
@@ -57,7 +63,7 @@ internal class UserManager
         ArrayList list = new ArrayList(); 
         foreach (object key in user.getHashtable().Keys)
         {
-            list.Add(String.Format("{0}: {1}", key, user.getHashtable()[key]));
+            list.Add(key);
         }
         return list;
     }

@@ -6,7 +6,7 @@ internal class User
 {
     [NonSerialized] private Appointments appointments;
     [NonSerialized] private string strUser;
-    private readonly Hashtable table;
+    private Hashtable table;
     private Serializer serializer;
 
     public User()
@@ -17,6 +17,12 @@ internal class User
     public Hashtable getHashtable()
     {
         return table;
+    }
+
+    public Appointments getAppointment(string strUser)
+    {
+        appointments = (Appointments)table[strUser];
+        return appointments;
     }
 
     public void addUser(string strUser, Appointments appointments)

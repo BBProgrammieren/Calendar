@@ -98,76 +98,118 @@ internal class Role
         }
         return null;
     }
-    //    userInfo = Console.ReadLine();
-
-    //    while (check.CheckRole(userInfo) == true)
-    //    {
-    //        Console.WriteLine("Please choose a number between 1 and 3!");
-    //        userInfo = Console.ReadLine();
-    //    }
-
-    //    switch (userInfo)
-    //    {
-    //        case "1":
-    //            Console.WriteLine("You selected User1.");
-    //            Console.WriteLine("If you want to choose another user press the Tab button.");
-    //            Console.WriteLine("If you want to continue press Enter.");
-    //            read = Console.ReadKey();
-    //            if (read.Key == ConsoleKey.Tab)
-    //            {
-    //                break;
-    //            }
-    //            else
-    //            {
-    //                user = new UserManager("User1");
-    //                break;
-    //            }
-
-    //        case "2":
-    //            Console.WriteLine("You selected User2.");
-    //            Console.WriteLine("If you want to choose another user press the Tab button.");
-    //            Console.WriteLine("If you want to continue press Enter.");
-    //            read = Console.ReadKey();
-    //            if (read.Key == ConsoleKey.Tab)
-    //            {
-    //                break;
-    //            }
-    //            else
-    //            {
-    //                user = new UserManager("User2");
-    //                break;
-    //            }
-
-    //        case "3":
-    //            Console.WriteLine("You selected User3.");
-    //            Console.WriteLine("If you want to choose another user press the Tab button.");
-    //            Console.WriteLine("If you want to continue press Enter.");
-    //            read = Console.ReadKey();
-    //            if (read.Key == ConsoleKey.Tab)
-    //            {
-    //                break;
-    //            }
-    //            else
-    //            {
-    //                user = new UserManager("User3");
-    //                break;
-    //            }
-    //    }
-    //    return user;
-    //}
-
-    public UserManager selectUserfromList()
+    public void showUserList(int selection)
     {
-
         Console.Clear();
         Console.WriteLine("Please select from the list.");
 
-        for (var i = 1; i <= allUsers.Count; i++)
+        for (var i = 0; i < allUsers.Count; i++)
         {
-            Console.WriteLine(allUsers[i]);
+            if (selection == i)
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.WriteLine(allUsers[selection]);
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.WriteLine(allUsers[i]);
+            }
         }
-        //alle User anzeigen in Liste und wählen
-        Console.ReadLine();
-        return userManager;
     }
+  
+    public UserManager selectUserfromList()
+    {
+        bool pressedEnter = false;  
+        int selection = 0;
+
+        showUserList(selection);
+
+        //alle User anzeigen in Liste und wählen
+
+        ConsoleKeyInfo cki;
+
+        do
+        {
+            cki = Console.ReadKey();
+
+            if (cki.Key == ConsoleKey.UpArrow)
+            {
+                if(selection != 0)
+                {
+                    selection--;
+                    showUserList(selection);
+                }        
+            }
+            else if (cki.Key == ConsoleKey.DownArrow)
+            {
+                if(selection <= allUsers.Count - 2)
+                {
+                    selection++;
+                    showUserList(selection);
+                }
+            }
+            else if (cki.Key == ConsoleKey.Enter)
+            {
+                pressedEnter = true;
+                return userManager = new UserManager((string)allUsers[selection]);
+                
+            }
+        } while (pressedEnter = true);
+
+        return null;
+    }
+
+
+
+
+
+    //switch (userInfo)
+    //{
+    //    case "1":
+    //        Console.WriteLine("You selected User1.");
+    //        Console.WriteLine("If you want to choose another user press the Tab button.");
+    //        Console.WriteLine("If you want to continue press Enter.");
+    //        read = Console.ReadKey();
+    //        if (read.Key == ConsoleKey.Tab)
+    //        {
+    //            break;
+    //        }
+    //        else
+    //        {
+    //            user = new UserManager("User1");
+    //            break;
+    //        }
+
+    //    case "2":
+    //        Console.WriteLine("You selected User2.");
+    //        Console.WriteLine("If you want to choose another user press the Tab button.");
+    //        Console.WriteLine("If you want to continue press Enter.");
+    //        read = Console.ReadKey();
+    //        if (read.Key == ConsoleKey.Tab)
+    //        {
+    //            break;
+    //        }
+    //        else
+    //        {
+    //            user = new UserManager("User2");
+    //            break;
+    //        }
+
+    //    case "3":
+    //        Console.WriteLine("You selected User3.");
+    //        Console.WriteLine("If you want to choose another user press the Tab button.");
+    //        Console.WriteLine("If you want to continue press Enter.");
+    //        read = Console.ReadKey();
+    //        if (read.Key == ConsoleKey.Tab)
+    //        {
+    //            break;
+    //        }
+    //        else
+    //        {
+    //            user = new UserManager("User3");
+    //            break;
+    //        }
+    //}
+    //return user;
 }

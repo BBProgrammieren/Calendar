@@ -27,11 +27,11 @@ internal class ShowCalendar
     public void ShowCurrentUser()
     {
         Console.WriteLine(userManager.Name() + "\n----------------------");
-        //Console.WriteLine("----------------------");
     }
 
-    private void Calendar(int month, int year, int chosenDay)
+    private void Calendar(int month, int year, int chosenDay)   
     {
+        Console.Clear();
         this.month = month;
         this.year = year;
         this.chosenDay = chosenDay;
@@ -43,7 +43,8 @@ internal class ShowCalendar
         for (var i = 1; i <= dateInfo.GetMonthDays(month, year); i++)
             if (i == DateTime.Now.Day && DateTime.Now.Month == month && DateTime.Now.Year == year)
             {
-                if (chosenDay == i) Console.BackgroundColor = ConsoleColor.Red;
+                if (chosenDay == i) 
+                Console.BackgroundColor = ConsoleColor.Red;
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(i);
                 Console.ResetColor();

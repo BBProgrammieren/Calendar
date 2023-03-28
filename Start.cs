@@ -1,4 +1,6 @@
-﻿namespace Calendar;
+﻿using System.Runtime.InteropServices;
+
+namespace Calendar;
 
 internal class Start
 {
@@ -6,6 +8,5 @@ internal class Start
     {
         UserManager userManager = new UserManager();
         Role role = new Role(userManager);
-        
     }
 }

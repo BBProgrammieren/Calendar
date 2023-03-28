@@ -10,6 +10,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Calendar
 {
+    [Serializable]
     internal class Serializer
     {
         private User user;
