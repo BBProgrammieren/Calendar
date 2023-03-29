@@ -1,12 +1,16 @@
-﻿namespace Calendar;
+﻿using System.Collections;
+
+namespace Calendar;
 
 internal class ChooseRoleValidation
 {
-    public bool CheckRole(string userInfo)
+    private ArrayList allUsers = new ArrayList();
+    public bool CheckRole(string userInfo, ArrayList allUsers)
     {
+        this.allUsers = allUsers;   
         var warningInput = false;
 
-        if (userInfo == "1" || userInfo == "2" || userInfo == "3")
+        if (allUsers.Contains(userInfo))
             warningInput = false;
         else
             warningInput = true;

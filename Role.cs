@@ -14,6 +14,7 @@ internal class Role
     public Role(UserManager userManager)
     {
         this.userManager = userManager;
+        this.allUsers = userManager.getListUser();
         StartCalendar();
     }
 
@@ -59,7 +60,6 @@ internal class Role
                     goto case Logger.Start;
                 }
             case Logger.Check:
-                this.allUsers = userManager.getListUser();
                 if (allUsers.Count == 0)
                 {
                     Console.Clear();
@@ -90,15 +90,29 @@ internal class Role
                 Console.WriteLine("Please enter a new user:");
                 newUserInput = Console.ReadLine();
 
-                if (check.CheckRole(newUserInput) && newUserInput != "")
+                if (check.CheckRole(newUserInput, allUsers) && newUserInput != "")
                 {
                     userManager.addNewUser(newUserInput);
                     return userManager;
                 }
+                else if (!check.CheckRole(newUserInput, allUsers))
+                {
+                    Console.Clear();
+                    Console.WriteLine("User already existing!");
+                    Console.ReadLine();
+                    goto case Logger.Start;
+                }
+                else if (newUserInput == "")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Enter a valid user: no empty entries allowed!");
+                    Console.ReadLine();
+                    goto case Logger.Start;
+                }
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine("Enter a valid user");
+                    Console.WriteLine("Unexpected problem!");
                     Console.ReadLine();
                     goto case Logger.Start;
                 }
