@@ -23,7 +23,14 @@ internal class User
     {
         this.strUser = strUser; 
         appointments = (Appointments)table[strUser];
-        return appointments;
+        if (appointments == null)
+        {
+            return appointments = new Appointments();
+        }           
+        else
+        {
+            return appointments;
+        }      
     }
 
     public void setAppointment(Appointments ap)

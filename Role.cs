@@ -91,6 +91,7 @@ internal class Role
 
                 if (check.CheckRole(newUserInput, allUsers) && newUserInput != "")
                 {
+                    userManager = new UserManager(newUserInput);
                     userManager.addNewUser(newUserInput);
                     return userManager;
                 }

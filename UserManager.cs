@@ -37,6 +37,7 @@ internal class UserManager
 
     public void addNewUser(string name)
     {
+        this.strUser = name;
         user.addUser(name, appointments);
         serializer.userSerializeNow(user);
     }
