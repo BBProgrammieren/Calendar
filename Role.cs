@@ -39,7 +39,6 @@ internal class Role
                 Console.Clear();
                 Console.WriteLine("Do you have already an existing user?");
                 Console.WriteLine("Y OR N");
-                //Console.WriteLine("User1 --- User2 --- User3");
 
                 userInput = Console.ReadKey();
 

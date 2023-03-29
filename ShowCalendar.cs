@@ -68,6 +68,7 @@ internal class ShowCalendar
         Console.WriteLine("Arrow left: previous month | Arrow right: next month");
         Console.WriteLine("Press A: Show all meetings");
         Console.WriteLine("Press S: Save all");
+        Console.WriteLine("Press D: Delete user");
         Console.WriteLine("Press Q: Quit and go Start");
 
         Reader();
@@ -104,6 +105,45 @@ internal class ShowCalendar
         else if (cki.Key == ConsoleKey.S)
         {
             this.saved = true;
+        }
+        else if (cki.Key == ConsoleKey.D)
+        {
+            deletingUser();
+        }
+    }
+
+    public void deletingUser()
+    {
+        bool delete = false;
+        Console.Clear();
+        Console.WriteLine("Are you sure to delete '"+ userManager.Name() + "' and all appointments?");
+        Console.WriteLine("Please enter Y or N.");
+
+        ConsoleKeyInfo cki;
+        cki = Console.ReadKey();
+
+        if (cki.Key == ConsoleKey.Y)
+        {
+            delete = true;
+        }
+        else if (cki.Key == ConsoleKey.N)
+        {
+            delete = false;
+        }
+        else
+        {
+            delete = false;
+        }
+
+        if (delete)
+        {
+            Console.Clear();
+            userManager.deleteUser(userManager.Name());
+            Role role = new Role(userManager);
+        }
+        else
+        {
+            Calendar(this.month, this.year, this.chosenDay);
         }
     }
 }

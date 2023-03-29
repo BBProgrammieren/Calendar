@@ -44,7 +44,7 @@ internal class UserManager
     public void deleteUser(string strUser) 
     {
         user.deleteUser(strUser);
-        serializer.SerializeNow(user, appointments);
+        serializer.userSerializeNow(user);
     }
 
     public bool getUserInfo()
