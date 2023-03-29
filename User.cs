@@ -21,8 +21,15 @@ internal class User
 
     public Appointments getAppointment(string strUser)
     {
+        this.strUser = strUser; 
         appointments = (Appointments)table[strUser];
         return appointments;
+    }
+
+    public void setAppointment(Appointments ap)
+    {
+        this.appointments = ap;
+        table[strUser] = appointments;
     }
 
     public void addUser(string strUser, Appointments appointments)

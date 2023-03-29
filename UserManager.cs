@@ -29,6 +29,12 @@ internal class UserManager
         return strUser;
     }
 
+    public void updateAppointment(Appointments ap)
+    {
+        user.setAppointment(ap);
+        serializer.userSerializeNow(user);
+    }
+
     public void addNewUser(string name)
     {
         user.addUser(name, appointments);

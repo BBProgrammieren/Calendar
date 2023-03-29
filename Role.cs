@@ -72,10 +72,17 @@ internal class Role
                     goto case Logger.Signin;
                 }
 
-
             case Logger.Signin:
-                return selectUserfromList();
-
+                var selectedUser = selectUserfromList();
+                if (selectedUser == null)
+                {
+                    goto case Logger.Start;
+                }
+                else
+                {
+                    return selectedUser;
+                }
+                
             case Logger.NewUser:
 
                 string newUserInput;
@@ -116,6 +123,8 @@ internal class Role
                 Console.WriteLine(allUsers[i]);
             }
         }
+
+        showInfo();
     }
   
     public UserManager selectUserfromList()
@@ -123,7 +132,7 @@ internal class Role
         bool pressedEnter = false;  
         int selection = 0;
 
-        showUserList(selection);
+        showUserList(selection);       
 
         //alle User anzeigen in Liste und wählen
 
@@ -155,12 +164,23 @@ internal class Role
                 return userManager = new UserManager((string)allUsers[selection]);
                 
             }
+            else if (cki.Key == ConsoleKey.Q)
+            {
+                return null;
+            }
         } while (pressedEnter = true);
 
         return null;
     }
 
-
+    public void showInfo()
+    {
+        Console.WriteLine("");
+        Console.WriteLine("----------------------");
+        Console.WriteLine("");
+        Console.WriteLine("Infos:");
+        Console.WriteLine("Press Q: Quit and go Start");
+    }
 
 
 

@@ -45,6 +45,12 @@ internal class AppointmentManager
 
     public void setDialog()
     {
+        showDialog();
+        readEntry();
+    }
+
+    public void showDialog()
+    {
         Console.Clear();
         Console.WriteLine(user.Name() + "\n----------------------");
         Console.WriteLine("Day:" + chosenDay);
@@ -52,7 +58,6 @@ internal class AppointmentManager
         Console.WriteLine("Year:" + year);
         Console.WriteLine("----------------------");
         Console.WriteLine("Set Appointment:");
-        readEntry();
     }
 
     public void showSecondDialog(string strAppointment)
@@ -73,14 +78,31 @@ internal class AppointmentManager
 
     public void readEntry()
     {
+        bool entryEmpty = true;
+        do {
+            if (strAppointment == null || strAppointment == "")
+            {               
+                Console.Clear();
+                showDialog();
+                strAppointment = Console.ReadLine();               
+            }
+            if (strAppointment != "")
+            {
+                entryEmpty = false;
+                showSecondDialog(strAppointment);
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("");
+                Console.WriteLine("Please enter a valid appointment!");
+                Console.WriteLine("Press Enter to continue.");
+                Console.ReadLine();
+                entryEmpty = true;
+            }
+        }while (entryEmpty == true);
+
         ConsoleKeyInfo cki;
-
-        if (strAppointment == null || strAppointment == "")
-        {
-            strAppointment = Console.ReadLine();
-            showSecondDialog(strAppointment);
-        }
-
         cki = Console.ReadKey();
 
         if (cki.Key == ConsoleKey.S)
@@ -99,7 +121,7 @@ internal class AppointmentManager
         }
         else if (cki.Key == ConsoleKey.D)
         {
-            if (strAppointment == null)
+            if (strAppointment == null || strAppointment == "")
             {
                 Console.WriteLine("Nothing to delete here!");
                 Console.WriteLine("Press Enter to continue.");
@@ -129,6 +151,7 @@ internal class AppointmentManager
     public void deleteAppointment()
     {
         ap.deleteAppointment(dateTime);
+        user.updateAppointment(ap);
         Console.Clear();
         new ShowCalendar(user);
     }
@@ -138,6 +161,7 @@ internal class AppointmentManager
         if (ap.checkNull(dateTime))
         {
             ap.addAppointment(dateTime, str);
+            user.updateAppointment(ap);    //serialisieren
             Console.Clear();
             new ShowCalendar(user);
         }
@@ -145,7 +169,7 @@ internal class AppointmentManager
         {
             Console.Clear();
             new ShowCalendar(user);
-        }
+        }     
     }
 
     public DateTime IntegerToDateTime(int chosenDay, int month, int year)
