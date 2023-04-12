@@ -22,12 +22,35 @@ internal class AppointmentManager
         checkDateAppointment();
     }
 
+    public AppointmentManager(DateTime dateTime, UserManager user)
+    {
+        this.chosenDay = chosenDay;
+        this.month = month;
+        this.year = year;
+        this.user = user;
+        strAppointment = null;
+        this.dateTime = dateTime;
+        ap = user.getUserAppointment();
+    }
+
     private void checkDateAppointment()
     {
         if (ap.checkNull(dateTime))
             setDialog();
         else
             getDialog();
+    }
+
+    public bool existAppointment()
+    {
+        if (ap.checkNull(dateTime))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     public void getDialog()
@@ -71,6 +94,7 @@ internal class AppointmentManager
         Console.WriteLine("Press S: Save and Quit");
         Console.WriteLine("Press E: Edit");
         Console.WriteLine("Press D: Delete and Quit");
+        Console.WriteLine("Press Q: Quit");
         Console.WriteLine("----------------------");
         Console.WriteLine("Your Appointment:");
         Console.WriteLine(strAppointment);
@@ -146,6 +170,11 @@ internal class AppointmentManager
                 setDialog();
             }
         }
+        else if (cki.Key == ConsoleKey.Q)
+        {
+            Console.Clear();
+            new ShowCalendar(user);
+        }
     }
 
     public void deleteAppointment()
@@ -175,8 +204,6 @@ internal class AppointmentManager
     public DateTime IntegerToDateTime(int chosenDay, int month, int year)
     {
         var date = new DateTime(year, month, chosenDay);
-        //int i = int.Parse(year.ToString("0000") + month.ToString("00") + chosenDay.ToString("00"));
-        //DateTime dt = DateTime.Parse(i.ToString());
         return date;
     }
 }

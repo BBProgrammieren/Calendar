@@ -11,6 +11,7 @@ internal class ShowCalendar
     private readonly UserManager userManager;
     private int year;
     private bool saved;
+    private bool active = false;
 
     public ShowCalendar(UserManager userManager)
     {
@@ -29,6 +30,32 @@ internal class ShowCalendar
         Console.WriteLine(userManager.Name() + "\n----------------------");
     }
 
+    public void showCurrentMonth()
+    {
+        Console.Write("Month:");
+        if (month == DateTime.Now.Month && DateTime.Now.Year == year)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+        }
+       
+        Console.Write(month);    
+        Console.ResetColor();
+    }
+
+    public void showCurrentYear()   
+    {
+        Console.WriteLine();
+        Console.Write("Year:");
+        if (DateTime.Now.Year == year)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+        }
+
+        Console.Write(year);
+        Console.ResetColor();
+        Console.WriteLine();
+    }
+
     private void Calendar(int month, int year, int chosenDay)   
     {
         Console.Clear();
@@ -36,29 +63,56 @@ internal class ShowCalendar
         this.year = year;
         this.chosenDay = chosenDay;
         ShowCurrentUser();
-        Console.WriteLine("Month:" + month);
-        Console.WriteLine("Year:" + year);
+        showCurrentMonth();
+        showCurrentYear();
         Console.WriteLine("----------------------");
 
-        for (var i = 1; i <= dateInfo.GetMonthDays(month, year); i++)
-            if (i == DateTime.Now.Day && DateTime.Now.Month == month && DateTime.Now.Year == year)
+        
+            if (active)
             {
-                if (chosenDay == i) 
-                Console.BackgroundColor = ConsoleColor.Red;
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(i);
-                Console.ResetColor();
-            }
-            else if (chosenDay == i)
-            {
-                Console.BackgroundColor = ConsoleColor.Red;
-                Console.WriteLine(i);
-                Console.ResetColor();
-            }
+              for (var i = 1; i <= dateInfo.GetMonthDays(month, year); i++)
+                if (i == DateTime.Now.Day && DateTime.Now.Month == month && DateTime.Now.Year == year)
+                {
+                    if (chosenDay == i)
+                        Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine(i + showMeeting(i, month, year));
+                    Console.ResetColor();
+                }
+                else if (chosenDay == i)
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine(i + showMeeting(i, month, year));
+                    Console.ResetColor();
+                }
 
+                else
+                {
+                    Console.WriteLine(i + showMeeting(i, month, year));
+                }
+            }
             else
             {
-                Console.WriteLine(i);
+                for (var i = 1; i <= dateInfo.GetMonthDays(month, year); i++)
+                    if (i == DateTime.Now.Day && DateTime.Now.Month == month && DateTime.Now.Year == year)
+                    {
+                        if (chosenDay == i)
+                            Console.BackgroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(i);
+                        Console.ResetColor();
+                    }
+                    else if (chosenDay == i)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.WriteLine(i);
+                        Console.ResetColor();
+                    }
+
+                    else
+                    {
+                        Console.WriteLine(i);
+                    }
             }
 
         Console.WriteLine("");
@@ -66,15 +120,15 @@ internal class ShowCalendar
         Console.WriteLine("");
         Console.WriteLine("Infos:");
         Console.WriteLine("Arrow left: previous month | Arrow right: next month");
-        Console.WriteLine("Press A: Show all meetings");
-        Console.WriteLine("Press S: Save all");
+        Console.WriteLine("Arrow up: previous day | Arrow down: next day");
+        Console.WriteLine("Press A: Show all meetings / Don't show all meetings");
         Console.WriteLine("Press D: Delete user");
         Console.WriteLine("Press Q: Quit and go Start");
 
-        Reader();
+        reader();
     }
 
-    public void Reader()
+    public void reader()
     {
         ConsoleKeyInfo cki;
         cki = Console.ReadKey();
@@ -110,13 +164,51 @@ internal class ShowCalendar
         {
             deletingUser();
         }
+        else if (cki.Key == ConsoleKey.A)
+        {
+            showAllMeetings(active);
+        }
+        else
+        {
+            reader();
+        }
+    }
+
+    public void showAllMeetings(bool active)
+    {
+
+        if (active == false)
+        {
+            this.active = true;
+            Calendar(this.month, this.year, this.chosenDay);     
+        }
+        else
+        {
+            this.active = false;
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+    }
+
+    public string showMeeting(int i, int month, int year)
+    {
+        var date = new DateTime(year, month, i);
+        AppointmentManager manager = new AppointmentManager(date, this.userManager);
+        if (active && manager.existAppointment())
+        {
+            string str = "  ---  Appointment existing!";
+            return str;
+        }
+        else
+        {
+            return "";
+        }
     }
 
     public void deletingUser()
     {
         bool delete = false;
         Console.Clear();
-        Console.WriteLine("Are you sure to delete '"+ userManager.Name() + "' and all appointments?");
+        Console.WriteLine("Are you sure to delete '"+ userManager.Name() + "' and all it's appointments?");
         Console.WriteLine("Please enter Y or N.");
 
         ConsoleKeyInfo cki;
