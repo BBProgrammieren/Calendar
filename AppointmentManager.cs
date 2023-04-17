@@ -61,8 +61,8 @@ internal class AppointmentManager
             return;
         }
 
-        strAppointment = ap.getString(dateTime);
-        showSecondDialog(strAppointment);
+        this.strAppointment = ap.getString(dateTime);
+        //showSecondDialog(strAppointment);
         readEntry();
     }
 
@@ -103,7 +103,8 @@ internal class AppointmentManager
     public void readEntry()
     {
         bool entryEmpty = true;
-        do {
+
+            do {
             if (strAppointment == null || strAppointment == "")
             {               
                 Console.Clear();
@@ -126,10 +127,10 @@ internal class AppointmentManager
             }
         }while (entryEmpty == true);
 
-        ConsoleKeyInfo cki;
-        cki = Console.ReadKey();
+        ConsoleKeyInfo key;
+        key = Console.ReadKey();
 
-        if (cki.Key == ConsoleKey.S)
+        if (key.Key == ConsoleKey.S)
         {
             if (strAppointment == null || strAppointment == "")
             {
@@ -143,7 +144,7 @@ internal class AppointmentManager
                 saveAppointment(strAppointment);
             }
         }
-        else if (cki.Key == ConsoleKey.D)
+        else if (key.Key == ConsoleKey.D)
         {
             if (strAppointment == null || strAppointment == "")
             {
@@ -157,7 +158,7 @@ internal class AppointmentManager
                 deleteAppointment();
             }
         }
-        else if (cki.Key == ConsoleKey.E)
+        else if (key.Key == ConsoleKey.E)
         {
             if (strAppointment == null)
             {
@@ -166,15 +167,22 @@ internal class AppointmentManager
             }
             else
             {
-                deleteAppointment();
-                setDialog();
+                editAppointment();             
             }
         }
-        else if (cki.Key == ConsoleKey.Q)
+        else if (key.Key == ConsoleKey.Q)
         {
             Console.Clear();
             new ShowCalendar(user);
         }
+    }
+
+    public void editAppointment()
+    {
+        ap.deleteAppointment(dateTime);
+        user.updateAppointment(ap);
+        this.strAppointment = "";
+        setDialog();
     }
 
     public void deleteAppointment()

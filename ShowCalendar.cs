@@ -121,7 +121,14 @@ internal class ShowCalendar
         Console.WriteLine("Infos:");
         Console.WriteLine("Arrow left: previous month | Arrow right: next month");
         Console.WriteLine("Arrow up: previous day | Arrow down: next day");
-        Console.WriteLine("Press A: Show all meetings / Don't show all meetings");
+        if (active)
+        {
+            Console.WriteLine("Press A: Don't show all meetings");
+        }
+        else
+        {
+            Console.WriteLine("Press A: Show all meetings");
+        }      
         Console.WriteLine("Press D: Delete user");
         Console.WriteLine("Press Q: Quit and go Start");
 
