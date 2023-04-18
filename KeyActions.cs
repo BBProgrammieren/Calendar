@@ -19,17 +19,17 @@ internal class KeyActions
         this.Calendar = Calendar;
     }
 
-    public void UpArrow()
+    public void UpArrow(GetDateInfo dateInfo)
     {
-        if (chosenDay == 0 || chosenDay == 1)
+        if (chosenDay == 1)
         {
-            chosenDay = 1;
+            chosenDay = dateInfo.GetMonthDays(month, year);
             Console.Clear();
             Calendar(month, year, chosenDay);
         }
         else
         {
-            chosenDay = chosenDay - 1;
+            chosenDay--;
             Console.Clear();
             Calendar(month, year, chosenDay);
         }
@@ -37,16 +37,16 @@ internal class KeyActions
 
     public void DownArrow(GetDateInfo dateInfo)
     {
-        if (chosenDay == dateInfo.GetMonthDays(month, year))
-        {
-            Console.Clear();
-            Calendar(month, year, dateInfo.GetMonthDays(month, year));
-        }
-        else
+        if (chosenDay < dateInfo.GetMonthDays(month, year))
         {
             chosenDay = chosenDay + 1;
             Console.Clear();
-            Calendar(month, year, chosenDay);
+            Calendar(month, year, chosenDay);    
+        }
+        else
+        {
+            Console.Clear();
+            Calendar(month, year, chosenDay = 1);
         }
     }
 
@@ -54,18 +54,18 @@ internal class KeyActions
     {
         if (month == 1)
         {
-            chosenDay = 0;
+            chosenDay = 1;
             Console.Clear();
             year = year - 1;
             month = 12;
-            Calendar(month, year, 0);
+            Calendar(month, year, chosenDay);
         }
         else
         {
-            chosenDay = 0;
+            chosenDay = 1;
             Console.Clear();
             month = month - 1;
-            Calendar(month, year, 0);
+            Calendar(month, year, chosenDay);
         }
     }
 
@@ -73,18 +73,18 @@ internal class KeyActions
     {
         if (month == 12)
         {
-            chosenDay = 0;
+            chosenDay = 1;
             Console.Clear();
             year = year + 1;
             month = 1;
-            Calendar(month, year, 0);
+            Calendar(month, year, chosenDay);
         }
         else
         {
-            chosenDay = 0;
+            chosenDay = 1;
             Console.Clear();
             month = month + 1;
-            Calendar(month, year, 0);
+            Calendar(month, year, chosenDay);
         }
     }
 }

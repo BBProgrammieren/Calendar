@@ -149,7 +149,7 @@ internal class ShowCalendar
         }
         else if (cki.Key == ConsoleKey.UpArrow)
         {
-            key.UpArrow();
+            key.UpArrow(dateInfo);
         }
         else if (cki.Key == ConsoleKey.DownArrow)
         {
@@ -157,7 +157,7 @@ internal class ShowCalendar
         }
         else if (cki.Key == ConsoleKey.Enter)
         {
-            appointment = new AppointmentManager(chosenDay, month, year, userManager);
+            Times times = new Times(chosenDay, month, year, userManager);
         }
         else if (cki.Key == ConsoleKey.Q)
         {

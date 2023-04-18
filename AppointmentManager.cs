@@ -9,24 +9,26 @@ internal class AppointmentManager
     private string strAppointment;
     private readonly UserManager user;
     private readonly int year;
+    private int hour;
 
-    public AppointmentManager(int chosenDay, int month, int year, UserManager user)
+    public AppointmentManager(int hour, int chosenDay, int month, int year, UserManager user)
     {
+        this.hour = hour; 
         this.chosenDay = chosenDay;
         this.month = month;
         this.year = year;
         this.user = user;
         strAppointment = null;
-        dateTime = IntegerToDateTime(this.chosenDay, this.month, this.year);
+        dateTime = IntegerToDateTime(this.hour, this.chosenDay, this.month, this.year);
         ap = user.getUserAppointment();
         checkDateAppointment();
     }
 
     public AppointmentManager(DateTime dateTime, UserManager user)
     {
-        this.chosenDay = chosenDay;
-        this.month = month;
-        this.year = year;
+        this.chosenDay = dateTime.Day;
+        this.month = dateTime.Month;
+        this.year = dateTime.Year;
         this.user = user;
         strAppointment = null;
         this.dateTime = dateTime;
@@ -43,6 +45,17 @@ internal class AppointmentManager
 
     public bool existAppointment()
     {
+        if (ap.checkNull(this.dateTime))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    public bool existAppointment(DateTime dateTime)
+    {
         if (ap.checkNull(dateTime))
         {
             return false;
@@ -51,6 +64,11 @@ internal class AppointmentManager
         {
             return true;
         }
+    }
+
+    public string getAppopintmentString(DateTime dateTime)
+    {
+       return ap.getString(dateTime);
     }
 
     public void getDialog()
@@ -76,6 +94,7 @@ internal class AppointmentManager
     {
         Console.Clear();
         Console.WriteLine(user.Name() + "\n----------------------");
+        Console.WriteLine("Hour:" + hour + " o'clock");
         Console.WriteLine("Day:" + chosenDay);
         Console.WriteLine("Month:" + month);
         Console.WriteLine("Year:" + year);
@@ -87,6 +106,7 @@ internal class AppointmentManager
     {
         Console.Clear();
         Console.WriteLine(user.Name() + "\n----------------------");
+        Console.WriteLine("Hour:" + hour + " o'clock");
         Console.WriteLine("Day:" + chosenDay);
         Console.WriteLine("Month:" + month);
         Console.WriteLine("Year:" + year);
@@ -173,7 +193,11 @@ internal class AppointmentManager
         else if (key.Key == ConsoleKey.Q)
         {
             Console.Clear();
-            new ShowCalendar(user);
+            new Times(chosenDay, month, year, user);
+        }
+        else
+        {
+            readEntry();
         }
     }
 
@@ -190,7 +214,22 @@ internal class AppointmentManager
         ap.deleteAppointment(dateTime);
         user.updateAppointment(ap);
         Console.Clear();
-        new ShowCalendar(user);
+        new Times(chosenDay, month, year, user);
+    }
+    public void deleteDayAppointment(int year,int month, int chosenDay) 
+    {
+        DateTime date; 
+        for(int i = 0; i <= 23; i++)
+        {
+            date = new DateTime(year, month, chosenDay, i, 0, 0);
+            if (existAppointment(date))
+            {
+                ap.deleteAppointment(date);
+                user.updateAppointment(ap);
+            }           
+        }            
+        Console.Clear();
+        new Times(chosenDay, month, year, user);
     }
 
     public void saveAppointment(string str)
@@ -200,18 +239,18 @@ internal class AppointmentManager
             ap.addAppointment(dateTime, str);
             user.updateAppointment(ap);    //serialisieren
             Console.Clear();
-            new ShowCalendar(user);
+            new Times(chosenDay, month, year, user);
         }
         else
         {
             Console.Clear();
-            new ShowCalendar(user);
+            new Times(chosenDay, month, year, user);
         }     
     }
 
-    public DateTime IntegerToDateTime(int chosenDay, int month, int year)
+    public DateTime IntegerToDateTime(int hour, int chosenDay, int month, int year)
     {
-        var date = new DateTime(year, month, chosenDay);
+        var date = new DateTime(year, month, chosenDay, hour, 0, 0);
         return date;
     }
 }
