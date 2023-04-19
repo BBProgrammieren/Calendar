@@ -4,7 +4,6 @@ internal class ShowCalendar
 {
     private AppointmentManager appointment;
     private int chosenDay;
-
     private readonly GetDateInfo dateInfo = new();
     private readonly KeyActions key;
     private int month;
@@ -25,11 +24,13 @@ internal class ShowCalendar
         Calendar(dateInfo.CurrentMonthNumber(), dateInfo.CurrentYearNumber(), chosenDay);
     }
 
+    //zeigt den aktuellen User an 
     public void ShowCurrentUser()
     {
         Console.WriteLine(userManager.Name() + "\n----------------------");
     }
 
+    // zeigt den aktuellen monat an, wenn ausgewählt wird es in grün angezeigt
     public void showCurrentMonth()
     {
         Console.Write("Month:");
@@ -42,6 +43,7 @@ internal class ShowCalendar
         Console.ResetColor();
     }
 
+   // zeigt das aktuelle jahr an, wenn ausgewählt wird es in grün angezeigt
     public void showCurrentYear()   
     {
         Console.WriteLine();
@@ -56,6 +58,7 @@ internal class ShowCalendar
         Console.WriteLine();
     }
 
+    //zeigt kalender an 
     private void Calendar(int month, int year, int chosenDay)   
     {
         Console.Clear();
@@ -135,6 +138,7 @@ internal class ShowCalendar
         reader();
     }
 
+    //fängt eingaben des Benutzers ab und verarbeitet
     public void reader()
     {
         ConsoleKeyInfo cki;
@@ -175,12 +179,175 @@ internal class ShowCalendar
         {
             showAllMeetings(active);
         }
+        else if (cki.Key == ConsoleKey.W)
+        {
+            Console.Clear();
+            Console.WriteLine("This key have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.E)
+        {
+            Console.Clear();
+            Console.WriteLine("This key have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.R)
+        {
+            Console.Clear();
+            Console.WriteLine("This key have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.T)
+        {
+            Console.Clear();
+            Console.WriteLine("This key have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.Z)
+        {
+            Console.Clear();
+            Console.WriteLine("This key have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.U)
+        {
+            Console.Clear();
+            Console.WriteLine("This key have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.I)
+        {
+            Console.Clear();
+            Console.WriteLine("This key have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.O)
+        {
+            Console.Clear();
+            Console.WriteLine("This key have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.P)
+        {
+            Console.Clear();
+            Console.WriteLine("This key have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.A)
+        {
+            Console.Clear();
+            Console.WriteLine("This key have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.S)
+        {
+            Console.Clear();
+            Console.WriteLine("This key have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.F)
+        {
+            Console.Clear();
+            Console.WriteLine("This key have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.G)
+        {
+            Console.Clear();
+            Console.WriteLine("This key have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.H)
+        {
+            Console.Clear();
+            Console.WriteLine("This key have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.J)
+        {
+            Console.Clear();
+            Console.WriteLine("This key have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.K)
+        {
+            Console.Clear();
+            Console.WriteLine("This key have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.L)
+        {
+            Console.Clear();
+            Console.WriteLine("This key have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.Y)
+        {
+            Console.Clear();
+            Console.WriteLine("This key have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
         else
         {
             reader();
         }
     }
 
+//schaut ob die Taste A gedrückt wurde
     public void showAllMeetings(bool active)
     {
 
@@ -196,11 +363,21 @@ internal class ShowCalendar
         }
     }
 
+    //für den jeweiligen Tag werden alle Stunden angeschaut, ob diese meetings enthalten
     public string showMeeting(int i, int month, int year)
     {
-        var date = new DateTime(year, month, i);
-        AppointmentManager manager = new AppointmentManager(date, this.userManager);
-        if (active && manager.existAppointment())
+        bool existing = false;
+        for(int j = 0; j < 24; j++)
+        {
+            var date = new DateTime(year, month, i, j, 0, 0);
+            AppointmentManager manager = new AppointmentManager(date, this.userManager);
+            if (active && manager.existAppointment())
+            { 
+                existing = true;
+            }
+        }
+              
+        if (active && existing)
         {
             string str = "  ---  Appointment existing!";
             return str;
@@ -211,6 +388,7 @@ internal class ShowCalendar
         }
     }
 
+    //abfrage, ob user gelöscht werden soll
     public void deletingUser()
     {
         bool delete = false;

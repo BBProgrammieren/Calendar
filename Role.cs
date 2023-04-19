@@ -1,6 +1,5 @@
 ﻿using Calendar.enums;
 using System.Collections;
-
 namespace Calendar;
 
 internal class Role
@@ -13,18 +12,17 @@ internal class Role
 
     public Role(UserManager userManager)
     {
-        this.userManager = userManager;
-        this.allUsers = userManager.getListUser();
+        this.userManager = userManager;        
         StartCalendar();
     }
 
     public void StartCalendar()
     {
+        this.allUsers = userManager.getListUser();
         this.userManager = ChooseUser();
         Console.Clear();
         new ShowCalendar(userManager);
     }
-
 
     public UserManager ChooseUser()
     {
@@ -176,7 +174,10 @@ internal class Role
             {
                 pressedEnter = true;
                 return userManager = new UserManager((string)allUsers[selection]);
-                
+            }
+            else if (cki.Key == ConsoleKey.D)
+            {
+                deleteUser(selection);
             }
             else if (cki.Key == ConsoleKey.Q)
             {
@@ -187,63 +188,43 @@ internal class Role
         return null;
     }
 
+    public void deleteUser(int selection)
+    {
+        ConsoleKeyInfo cki;   
+        Console.Clear();
+        Console.WriteLine("Are you sure that you want to delete the user: " + allUsers[selection] + "?");
+        Console.WriteLine("Y or N");
+        cki = Console.ReadKey();
+
+        if(cki.Key == ConsoleKey.Y)
+        {
+            Console.Clear();
+            userManager.deleteUser((string) allUsers[selection]);
+            this.allUsers = userManager.getListUser();
+            this.userManager = selectUserfromList();
+            new ShowCalendar(userManager);
+        }
+        else if (cki.Key == ConsoleKey.N)
+        {
+            Console.Clear();
+            StartCalendar();
+        }
+        else
+        {
+            Console.WriteLine("Please press Y or N");
+            Console.ReadKey();
+            Console.Clear();
+        }
+        selection = 0;
+    }
+
     public void showInfo()
     {
         Console.WriteLine("");
         Console.WriteLine("----------------------");
         Console.WriteLine("");
         Console.WriteLine("Infos:");
+        Console.WriteLine("Press D: Delete user");
         Console.WriteLine("Press Q: Quit and go Start");
     }
-
-
-
-    //switch (userInfo)
-    //{
-    //    case "1":
-    //        Console.WriteLine("You selected User1.");
-    //        Console.WriteLine("If you want to choose another user press the Tab button.");
-    //        Console.WriteLine("If you want to continue press Enter.");
-    //        read = Console.ReadKey();
-    //        if (read.Key == ConsoleKey.Tab)
-    //        {
-    //            break;
-    //        }
-    //        else
-    //        {
-    //            user = new UserManager("User1");
-    //            break;
-    //        }
-
-    //    case "2":
-    //        Console.WriteLine("You selected User2.");
-    //        Console.WriteLine("If you want to choose another user press the Tab button.");
-    //        Console.WriteLine("If you want to continue press Enter.");
-    //        read = Console.ReadKey();
-    //        if (read.Key == ConsoleKey.Tab)
-    //        {
-    //            break;
-    //        }
-    //        else
-    //        {
-    //            user = new UserManager("User2");
-    //            break;
-    //        }
-
-    //    case "3":
-    //        Console.WriteLine("You selected User3.");
-    //        Console.WriteLine("If you want to choose another user press the Tab button.");
-    //        Console.WriteLine("If you want to continue press Enter.");
-    //        read = Console.ReadKey();
-    //        if (read.Key == ConsoleKey.Tab)
-    //        {
-    //            break;
-    //        }
-    //        else
-    //        {
-    //            user = new UserManager("User3");
-    //            break;
-    //        }
-    //}
-    //return user;
 }
