@@ -182,7 +182,7 @@ internal class ShowCalendar
         else if (cki.Key == ConsoleKey.W)
         {
             Console.Clear();
-            Console.WriteLine("This key have no function!");
+            Console.WriteLine("The key 'W' have no function!");
             Console.WriteLine("Please read the info!");
             Console.WriteLine("Press enter to continue!");
             Console.ReadKey();
@@ -191,7 +191,7 @@ internal class ShowCalendar
         else if (cki.Key == ConsoleKey.E)
         {
             Console.Clear();
-            Console.WriteLine("This key have no function!");
+            Console.WriteLine("The key 'E' have no function!");
             Console.WriteLine("Please read the info!");
             Console.WriteLine("Press enter to continue!");
             Console.ReadKey();
@@ -200,7 +200,7 @@ internal class ShowCalendar
         else if (cki.Key == ConsoleKey.R)
         {
             Console.Clear();
-            Console.WriteLine("This key have no function!");
+            Console.WriteLine("The key 'R' have no function!");
             Console.WriteLine("Please read the info!");
             Console.WriteLine("Press enter to continue!");
             Console.ReadKey();
@@ -290,7 +290,7 @@ internal class ShowCalendar
         else if (cki.Key == ConsoleKey.G)
         {
             Console.Clear();
-            Console.WriteLine("This key have no function!");
+            Console.WriteLine("The key 'G' have no function!");
             Console.WriteLine("Please read the info!");
             Console.WriteLine("Press enter to continue!");
             Console.ReadKey();
@@ -299,7 +299,7 @@ internal class ShowCalendar
         else if (cki.Key == ConsoleKey.H)
         {
             Console.Clear();
-            Console.WriteLine("This key have no function!");
+            Console.WriteLine("The key 'H' have no function!");
             Console.WriteLine("Please read the info!");
             Console.WriteLine("Press enter to continue!");
             Console.ReadKey();
@@ -308,7 +308,7 @@ internal class ShowCalendar
         else if (cki.Key == ConsoleKey.J)
         {
             Console.Clear();
-            Console.WriteLine("This key have no function!");
+            Console.WriteLine("The key 'J' have no function!");
             Console.WriteLine("Please read the info!");
             Console.WriteLine("Press enter to continue!");
             Console.ReadKey();
@@ -317,7 +317,7 @@ internal class ShowCalendar
         else if (cki.Key == ConsoleKey.K)
         {
             Console.Clear();
-            Console.WriteLine("This key have no function!");
+            Console.WriteLine("The key 'K' have no function!");
             Console.WriteLine("Please read the info!");
             Console.WriteLine("Press enter to continue!");
             Console.ReadKey();
@@ -326,7 +326,7 @@ internal class ShowCalendar
         else if (cki.Key == ConsoleKey.L)
         {
             Console.Clear();
-            Console.WriteLine("This key have no function!");
+            Console.WriteLine("The key 'L' have no function!");
             Console.WriteLine("Please read the info!");
             Console.WriteLine("Press enter to continue!");
             Console.ReadKey();
@@ -335,7 +335,70 @@ internal class ShowCalendar
         else if (cki.Key == ConsoleKey.Y)
         {
             Console.Clear();
-            Console.WriteLine("This key have no function!");
+            Console.WriteLine("The key 'Y' have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.X)
+        {
+            Console.Clear();
+            Console.WriteLine("The key 'X' have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.C)
+        {
+            Console.Clear();
+            Console.WriteLine("The key 'C' have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.V)
+        {
+            Console.Clear();
+            Console.WriteLine("The key 'V' have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.B)
+        {
+            Console.Clear();
+            Console.WriteLine("The key 'B' have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.N)
+        {
+            Console.Clear();
+            Console.WriteLine("The key 'N' have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.M)
+        {
+            Console.Clear();
+            Console.WriteLine("The key 'M' have no function!");
+            Console.WriteLine("Please read the info!");
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadKey();
+            Calendar(this.month, this.year, this.chosenDay);
+        }
+        else if (cki.Key == ConsoleKey.Spacebar)
+        {
+            Console.Clear();
+            Console.WriteLine("The spacebar have no function!");
             Console.WriteLine("Please read the info!");
             Console.WriteLine("Press enter to continue!");
             Console.ReadKey();

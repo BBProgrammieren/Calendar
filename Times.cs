@@ -60,6 +60,7 @@ namespace Calendar
             Console.WriteLine("");
             Console.WriteLine("Press Enter: show appointment");
             Console.WriteLine("Press D: Delete all appointments");
+            Console.WriteLine("Press A: Show alternative times");
             Console.WriteLine("Press Q: Quit and go back");
             reader();
         }

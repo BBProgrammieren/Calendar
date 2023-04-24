@@ -52,7 +52,9 @@ internal class Role
 
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("Please enter Y or N!");
+                    Console.WriteLine("Press enter to continue.");
                     Console.ReadKey();
                     goto case Logger.Start;
                 }
