@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Calendar.Times">
+    <Position X="7" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAEAAAAAAAAAAJAAABAAgAAAgQAAAAABAKAAAARAAA=</HashCode>
+      <FileName>Times.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="appointment" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Calendar.AppointmentManager">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAQAAACAAAAAAQQAAAQAEhAQAIAAABjACIAgBARA=</HashCode>
+      <FileName>AppointmentManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Calendar.ShowCalendar">
+    <Position X="1.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AYAUAAAAAAgAAAAAAIBEAQAACAQAAAAGBACAIAAQAAA=</HashCode>
+      <FileName>ShowCalendar.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="appointment" />
+      <Field Name="userManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Calendar.UserManager">
+    <Position X="1.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAABAAAcAAAgABAAIAAAQAAAAAQQ=</HashCode>
+      <FileName>UserManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Calendar.Appointments">
+    <Position X="9" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAABAAAAAAAQACAAAABAAAAAAAAA=</HashCode>
+      <FileName>Appointments.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
